@@ -18,43 +18,173 @@
 
     <section class="content-section">
         <div class="container">
-            <div class="products-grid">
-                <div class="product-card">
-                    <h3>가정용 LPG (10kg)</h3>
-                    <img src="/images/lpg-10kg.jpg" alt="10kg LPG 가스통" class="product-img">
-                    <p>일반 가정에서 사용하는 표준 용기</p>
-                    <ul>
-                        <li>용량: 10kg</li>
-                        <li>용도: 일반 가정용</li>
-                        <li>배달 가능</li>
-                    </ul>
-                    <a href="tel:010-5513-3481" class="btn-order">주문하기</a>
+            <!-- 가스 제품 카테고리 -->
+            <div class="products-grid-gas">
+                <!-- 산업용 가스 -->
+                <div class="product-category-card">
+                    <div class="category-header" onclick="toggleCategory(this)">
+                        <h3>🏭 산업용 가스</h3>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="category-content">
+                        <p class="category-desc">산업 현장 필수 가스</p>
+                        <div class="sub-products">
+                            <div class="sub-product-item">
+                                <img src="/images/lpg-10kg.jpg" alt="산소" class="sub-product-img">
+                                <h4>산소 (O₂)</h4>
+                                <p>용접, 절단 등</p>
+                            </div>
+                            <div class="sub-product-item">
+                                <img src="/images/lpg-10kg.jpg" alt="질소" class="sub-product-img">
+                                <h4>질소 (N₂)</h4>
+                                <p>불활성 가스</p>
+                            </div>
+                            <div class="sub-product-item">
+                                <img src="/images/lpg-10kg.jpg" alt="아르곤" class="sub-product-img">
+                                <h4>아르곤 (Ar)</h4>
+                                <p>용접 보호 가스</p>
+                            </div>
+                            <div class="sub-product-item">
+                                <img src="/images/lpg-10kg.jpg" alt="이산화탄소" class="sub-product-img">
+                                <h4>이산화탄소 (CO₂)</h4>
+                                <p>용접, 냉각</p>
+                            </div>
+                            <div class="sub-product-item">
+                                <img src="/images/lpg-10kg.jpg" alt="헬륨" class="sub-product-img">
+                                <h4>헬륨 (He)</h4>
+                                <p>검사, 냉각</p>
+                            </div>
+                            <div class="sub-product-item">
+                                <img src="/images/lpg-10kg.jpg" alt="수소" class="sub-product-img">
+                                <h4>수소 (H₂)</h4>
+                                <p>열처리, 화학</p>
+                            </div>
+                        </div>
+                        <a href="tel:010-5513-3481" class="btn-order">주문하기</a>
+                    </div>
                 </div>
 
-                <div class="product-card">
-                    <h3>가정용 LPG (20kg)</h3>
-                    <img src="/images/lpg-20kg.jpg" alt="20kg LPG 가스통" class="product-img">
-                    <p>대용량 가정용 용기</p>
-                    <ul>
-                        <li>용량: 20kg</li>
-                        <li>용도: 대가족, 난방용</li>
-                        <li>배달 가능</li>
-                    </ul>
-                    <a href="tel:010-5513-3481" class="btn-order">주문하기</a>
+                <!-- 의료용 가스 -->
+                <div class="product-category-card">
+                    <div class="category-header" onclick="toggleCategory(this)">
+                        <h3>🏥 의료용 가스</h3>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="category-content">
+                        <p class="category-desc">병원 및 의료기관 전용</p>
+                        <div class="sub-products">
+                            <div class="sub-product-item">
+                                <img src="/images/lpg-10kg.jpg" alt="의료용 산소" class="sub-product-img">
+                                <h4>의료용 산소 (O₂)</h4>
+                                <p>호흡 보조</p>
+                            </div>
+                            <div class="sub-product-item">
+                                <img src="/images/lpg-10kg.jpg" alt="의료용 질소" class="sub-product-img">
+                                <h4>의료용 질소 (N₂)</h4>
+                                <p>냉동 보관</p>
+                            </div>
+                            <div class="sub-product-item">
+                                <img src="/images/lpg-10kg.jpg" alt="탄산" class="sub-product-img">
+                                <h4>탄산 (CO₂)</h4>
+                                <p>복강경 수술</p>
+                            </div>
+                            <div class="sub-product-item">
+                                <img src="/images/lpg-10kg.jpg" alt="아산화질소" class="sub-product-img">
+                                <h4>아산화질소 (N₂O)</h4>
+                                <p>마취 가스</p>
+                            </div>
+                            <div class="sub-product-item">
+                                <img src="/images/lpg-10kg.jpg" alt="EO가스" class="sub-product-img">
+                                <h4>EO가스</h4>
+                                <p>멸균 소독</p>
+                            </div>
+                        </div>
+                        <a href="tel:010-5513-3481" class="btn-order">주문하기</a>
+                    </div>
                 </div>
 
-                <div class="product-card">
-                    <h3>업소용 LPG (50kg)</h3>
-                    <img src="/images/lpg-50kg.jpg" alt="50kg LPG 가스통" class="product-img">
-                    <p>음식점, 사업장용 대용량 용기</p>
-                    <ul>
-                        <li>용량: 50kg</li>
-                        <li>용도: 음식점, 공장</li>
-                        <li>대량 주문 가능</li>
-                    </ul>
-                    <a href="tel:010-5513-3481" class="btn-order">주문하기</a>
+                <!-- 특수가스 -->
+                <div class="product-category-card">
+                    <div class="category-header" onclick="toggleCategory(this)">
+                        <h3>⚗️ 특수가스</h3>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="category-content">
+                        <p class="category-desc">고순도 가스 공급</p>
+                        <div class="sub-products">
+                            <div class="sub-product-item">
+                                <img src="/images/lpg-10kg.jpg" alt="고순도 가스" class="sub-product-img">
+                                <h4>고순도 가스</h4>
+                                <p>99.999% 이상</p>
+                            </div>
+                            <div class="sub-product-item">
+                                <img src="/images/lpg-10kg.jpg" alt="혼합 가스" class="sub-product-img">
+                                <h4>혼합 가스</h4>
+                                <p>맞춤 배합</p>
+                            </div>
+                            <div class="sub-product-item">
+                                <img src="/images/lpg-10kg.jpg" alt="표준 가스" class="sub-product-img">
+                                <h4>표준 가스</h4>
+                                <p>교정용</p>
+                            </div>
+                            <div class="sub-product-item">
+                                <img src="/images/lpg-10kg.jpg" alt="연구용 가스" class="sub-product-img">
+                                <h4>연구용 가스</h4>
+                                <p>실험실용</p>
+                            </div>
+                            <div class="sub-product-item">
+                                <img src="/images/lpg-10kg.jpg" alt="전자 산업용" class="sub-product-img">
+                                <h4>전자 산업용</h4>
+                                <p>반도체 공정</p>
+                            </div>
+                        </div>
+                        <a href="tel:010-5513-3481" class="btn-order">주문하기</a>
+                    </div>
                 </div>
 
+                <!-- 액체가스 -->
+                <div class="product-category-card">
+                    <div class="category-header" onclick="toggleCategory(this)">
+                        <h3>❄️ 액체가스</h3>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="category-content">
+                        <p class="category-desc">초저온 액체가스 공급</p>
+                        <div class="sub-products">
+                            <div class="sub-product-item">
+                                <img src="/images/lpg-10kg.jpg" alt="액체산소" class="sub-product-img">
+                                <h4>액체산소 (LOX)</h4>
+                                <p>-183°C</p>
+                            </div>
+                            <div class="sub-product-item">
+                                <img src="/images/lpg-10kg.jpg" alt="액체아르곤" class="sub-product-img">
+                                <h4>액체아르곤 (LAr)</h4>
+                                <p>-186°C</p>
+                            </div>
+                            <div class="sub-product-item">
+                                <img src="/images/lpg-10kg.jpg" alt="액화질소" class="sub-product-img">
+                                <h4>액화질소 (LN₂)</h4>
+                                <p>-196°C</p>
+                            </div>
+                            <div class="sub-product-item">
+                                <img src="/images/lpg-10kg.jpg" alt="액화탄산" class="sub-product-img">
+                                <h4>액화탄산 (LCO₂)</h4>
+                                <p>-78°C</p>
+                            </div>
+                            <div class="sub-product-item">
+                                <img src="/images/lpg-10kg.jpg" alt="대용량" class="sub-product-img">
+                                <h4>대용량 공급</h4>
+                                <p>탱크로리</p>
+                            </div>
+                        </div>
+                        <a href="tel:010-5513-3481" class="btn-order">주문하기</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 서비스 카테고리 -->
+            <h2 class="section-title">부가 서비스</h2>
+            <div class="products-grid-services">
                 <div class="product-card">
                     <h3>설치 서비스</h3>
                     <div class="product-image">🔧</div>

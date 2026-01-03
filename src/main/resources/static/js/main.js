@@ -107,6 +107,26 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('신항만 가스 웹사이트에 오신 것을 환영합니다!');
 });
 
+// Product category dropdown toggle
+function toggleCategory(element) {
+    const header = element;
+    const content = header.nextElementSibling;
+    const allHeaders = document.querySelectorAll('.category-header');
+    const allContents = document.querySelectorAll('.category-content');
+    
+    // Close all other dropdowns
+    allHeaders.forEach((h, index) => {
+        if (h !== header) {
+            h.classList.remove('active');
+            allContents[index].classList.remove('active');
+        }
+    });
+    
+    // Toggle current dropdown
+    header.classList.toggle('active');
+    content.classList.toggle('active');
+}
+
 // Utility function to format phone numbers for display
 function formatPhoneNumber(phoneNumber) {
     const cleaned = ('' + phoneNumber).replace(/\D/g, '');
