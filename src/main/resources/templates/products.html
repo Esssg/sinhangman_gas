@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제품 및 서비스 - 신항만 가스</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div th:replace="~{layout/navigation :: navigation}"></div>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>제품 및 서비스</h1>
+            <p>신항만 가스의 다양한 제품과 서비스</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="products-grid">
+                <div class="product-card">
+                    <h3>가정용 LPG (10kg)</h3>
+                    <img src="/images/lpg-10kg.jpg" alt="10kg LPG 가스통" class="product-img">
+                    <p>일반 가정에서 사용하는 표준 용기</p>
+                    <ul>
+                        <li>용량: 10kg</li>
+                        <li>용도: 일반 가정용</li>
+                        <li>배달 가능</li>
+                    </ul>
+                    <a href="tel:010-5513-3481" class="btn-order">주문하기</a>
+                </div>
+
+                <div class="product-card">
+                    <h3>가정용 LPG (20kg)</h3>
+                    <img src="/images/lpg-20kg.jpg" alt="20kg LPG 가스통" class="product-img">
+                    <p>대용량 가정용 용기</p>
+                    <ul>
+                        <li>용량: 20kg</li>
+                        <li>용도: 대가족, 난방용</li>
+                        <li>배달 가능</li>
+                    </ul>
+                    <a href="tel:010-5513-3481" class="btn-order">주문하기</a>
+                </div>
+
+                <div class="product-card">
+                    <h3>업소용 LPG (50kg)</h3>
+                    <img src="/images/lpg-50kg.jpg" alt="50kg LPG 가스통" class="product-img">
+                    <p>음식점, 사업장용 대용량 용기</p>
+                    <ul>
+                        <li>용량: 50kg</li>
+                        <li>용도: 음식점, 공장</li>
+                        <li>대량 주문 가능</li>
+                    </ul>
+                    <a href="tel:010-5513-3481" class="btn-order">주문하기</a>
+                </div>
+
+                <div class="product-card">
+                    <h3>설치 서비스</h3>
+                    <div class="product-image">🔧</div>
+                    <p>전문 기사의 안전한 설치</p>
+                    <ul>
+                        <li>신규 설치</li>
+                        <li>교체 설치</li>
+                        <li>안전 점검</li>
+                    </ul>
+                    <a href="/inquiry" class="btn-order">문의하기</a>
+                </div>
+
+                <div class="product-card">
+                    <h3>정기 배달 서비스</h3>
+                    <div class="product-image">🚚</div>
+                    <p>편리한 정기 배달</p>
+                    <ul>
+                        <li>정기 배달 계약</li>
+                        <li>할인 혜택</li>
+                        <li>우선 배달</li>
+                    </ul>
+                    <a href="/inquiry" class="btn-order">신청하기</a>
+                </div>
+
+                <div class="product-card">
+                    <h3>안전 점검 서비스</h3>
+                    <div class="product-image">✅</div>
+                    <p>정기적인 안전 점검</p>
+                    <ul>
+                        <li>가스 누출 점검</li>
+                        <li>배관 상태 점검</li>
+                        <li>안전 교육</li>
+                    </ul>
+                    <a href="/inquiry" class="btn-order">신청하기</a>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h3>📞 주문 및 문의</h3>
+                <p class="phone-large">010-5513-3481</p>
+                <p>평일 07:30 - 17:30, 토요일 07:30 - 13:00</p>
+            </div>
+        </div>
+    </section>
+
+    <div th:replace="~{layout/footer :: footer}"></div>
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>
+

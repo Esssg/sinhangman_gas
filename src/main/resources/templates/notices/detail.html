@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${notice.title} + ' - 신항만 가스'">공지사항 상세</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div th:replace="~{layout/navigation :: navigation}"></div>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>공지사항</h1>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="notice-detail">
+                <div class="notice-header">
+                    <h2 th:text="${notice.title}"></h2>
+                    <div class="notice-meta">
+                        <span>작성일: <span th:text="${#temporals.format(notice.createdAt, 'yyyy-MM-dd HH:mm')}"></span></span>
+                        <span>조회수: <span th:text="${notice.viewCount}"></span></span>
+                    </div>
+                </div>
+                <div class="notice-content">
+                    <p th:text="${notice.content}" style="white-space: pre-line;"></p>
+                </div>
+                <div class="notice-footer">
+                    <a href="/notices" class="btn-secondary">목록으로</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div th:replace="~{layout/footer :: footer}"></div>
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>
+

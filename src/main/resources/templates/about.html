@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회사소개 - 신항만 가스</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div th:replace="~{layout/navigation :: navigation}"></div>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>회사소개</h1>
+            <p>신항만 가스를 소개합니다</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="about-content">
+                <h2>신항만 가스</h2>
+                <p class="lead">부산 사하구 지역에서 안전하고 신뢰할 수 있는 LPG 가스를 공급하는 전문 업체입니다.</p>
+                
+                <div class="about-image-section">
+                    <img src="/images/공장4.jpeg" alt="신항만 가스 시설" class="about-main-img">
+                </div>
+                
+                <div class="about-details">
+                    <h3>우리의 비전</h3>
+                    <p>고객의 안전과 편의를 최우선으로 생각하며, 지역 사회에 꼭 필요한 기업으로 성장하고 있습니다.</p>
+                    
+                    <h3>우리의 미션</h3>
+                    <ul>
+                        <li>안전한 가스 공급 및 관리</li>
+                        <li>신속하고 정확한 배달 서비스</li>
+                        <li>전문적인 설치 및 점검 서비스</li>
+                        <li>고객 만족을 위한 지속적인 노력</li>
+                    </ul>
+                    
+                    <h3>서비스 지역</h3>
+                    <p>부산 사하구 신평동 및 인근 지역을 중심으로 서비스를 제공하고 있습니다.</p>
+                    
+                    <h3>주요 서비스</h3>
+                    <div class="service-list">
+                        <div class="service-item">
+                            <h4>가정용 LPG 공급</h4>
+                            <p>일반 가정에서 사용하는 LPG 가스를 안전하게 공급합니다.</p>
+                        </div>
+                        <div class="service-item">
+                            <h4>업소용 LPG 공급</h4>
+                            <p>음식점, 공장 등 사업장에 대량으로 공급합니다.</p>
+                        </div>
+                        <div class="service-item">
+                            <h4>배달 서비스</h4>
+                            <p>전화 한 통이면 신속하게 배달해드립니다.</p>
+                        </div>
+                        <div class="service-item">
+                            <h4>설치 및 점검</h4>
+                            <p>전문 기사가 안전하게 설치하고 정기적으로 점검합니다.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="about-images-grid">
+                        <img src="/images/공장5.jpeg" alt="가스 저장 시설">
+                        <img src="/images/작업사진1.jpeg" alt="전문 작업">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div th:replace="~{layout/footer :: footer}"></div>
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>
+
