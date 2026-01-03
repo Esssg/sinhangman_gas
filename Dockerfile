@@ -18,11 +18,14 @@ COPY src ./src
 RUN ./gradlew build --no-daemon -x test
 
 # Stage 2: Runtime
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 
+# Install curl for health check
+RUN apk add --no-cache curl
+
 # Create non-root user
-RUN groupadd -r spring && useradd -r -g spring spring
+RUN addgroup -S spring && adduser -S spring -G spring
 
 # Copy jar from build stage
 COPY --from=build /app/build/libs/*SNAPSHOT.jar app.jar
