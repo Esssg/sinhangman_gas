@@ -937,15 +937,33 @@ footer {
     margin-top: 3rem;
 }
 
-.about-images-grid-three {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+.about-images-layout {
     margin-top: 3rem;
 }
 
+.about-images-top {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.about-images-bottom {
+    width: 100%;
+}
+
+.about-work-img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    background: #f9fafb;
+}
+
 @media (max-width: 768px) {
-    .about-images-grid-three {
+    .about-images-top {
         grid-template-columns: 1fr;
     }
 }
