@@ -151,7 +151,7 @@ http://localhost:8080
 - **모던하고 깔끔한 UI**: 현대적인 디자인 트렌드 반영
 - **반응형 웹 디자인**: 모바일, 태블릿, 데스크톱 모두 지원
 - **사용자 친화적**: 직관적인 네비게이션과 레이아웃
-- **브랜드 컬러**: 파란색 계열 (#1e3a8a, #2563eb)과 골드 액센트 (#fbbf24)
+- **브랜드 컬러**: 다크 그레이 (#1f2937, #374151)와 오렌지 액센트 (#f97316)
 
 ## 📞 연락처
 
@@ -182,18 +182,66 @@ http://localhost:8080
 
 ## 🚀 배포
 
-### Docker를 사용한 배포 (선택사항)
+### Docker를 사용한 로컬 테스트
 
-```dockerfile
-FROM openjdk:17-jdk-slim
-COPY build/libs/sinhangman-gas-0.0.1-SNAPSHOT.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
-```
+#### 방법 1: Docker 직접 빌드 및 실행
 
 ```bash
+# Docker 이미지 빌드
 docker build -t sinhangman-gas .
+
+# Docker 컨테이너 실행
 docker run -p 8080:8080 sinhangman-gas
 ```
+
+#### 방법 2: Docker Compose 사용
+
+```bash
+# 빌드 및 실행
+docker-compose up --build
+
+# 백그라운드 실행
+docker-compose up -d
+
+# 중지
+docker-compose down
+```
+
+### Render.com 배포 방법
+
+#### 1. Render Dashboard 접속
+- https://dashboard.render.com 로그인
+
+#### 2. New Web Service 생성
+- "New +" 클릭 → "Web Service" 선택
+- GitHub 저장소 연결: `Esssg/sinhangman_gas`
+
+#### 3. 배포 설정
+```yaml
+Name: sinhangman-gas
+Runtime: Docker
+Branch: master
+Region: Singapore (또는 선호하는 지역)
+Instance Type: Free
+```
+
+#### 4. 환경 변수 설정 (선택사항)
+```
+SPRING_PROFILES_ACTIVE=prod
+JAVA_OPTS=-Xmx512m -Xms256m
+```
+
+#### 5. 배포 실행
+- "Create Web Service" 클릭
+- 자동으로 Docker 이미지 빌드 및 배포
+- 배포 완료 후 제공된 URL로 접속
+
+### 배포 특징
+
+- ✅ **자동 배포**: GitHub master 브랜치에 푸시하면 자동으로 재배포
+- ✅ **멀티 스테이지 빌드**: 최적화된 Docker 이미지
+- ✅ **Health Check**: 자동 헬스 체크로 안정성 확보
+- ✅ **환경 분리**: production 프로파일 사용
 
 ## 📝 개발 가이드
 
