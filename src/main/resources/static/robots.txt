@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Disallow: /h2-console
+Disallow: /inquiry
+
+# Naver
+User-agent: Yeti
+Allow: /
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://sinhangman-gas.onrender.com/sitemap.xml
+

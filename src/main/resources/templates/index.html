@@ -9,8 +9,8 @@
     <meta name="naver-site-verification" content="24bc4e237b199acd7b996ca6d0b7e4c974a71474" />
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="부산, 경남 지역 최고의 가스 공급 업체. 산업용, 의료용, 특수가스, 액체가스 전문. 신속한 배달과 안전한 서비스.">
-    <meta name="keywords" content="신항만가스, 가스, LPG, 산업용가스, 의료용가스, 부산가스, 경남가스, 산소, 질소, 아르곤">
+    <meta name="description" content="부산 사하구 신항만가스. 산업용가스(산소, 질소, 아르곤, 헬륨, 수소), 의료용가스, 특수가스, 액체가스 전문. 부산, 경남, 거제, 창원, 마산, 진해 배달 가능. 010-5513-3481">
+    <meta name="keywords" content="신항만가스, 부산가스, 사하구가스, 신평동가스, 산소가스, 질소가스, 아르곤가스, 헬륨가스, 수소가스, 의료용산소, 산업용가스, 특수가스, 액체가스, 액화질소, 부산산소, 경남가스, 거제가스, 창원가스, 마산가스, 진해가스, LPG, 가스배달, 가스공급">
     
     <!-- Open Graph (카카오톡, 페이스북 등) -->
     <meta property="og:type" content="website">
@@ -24,6 +24,60 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="신항만 가스 - 믿을 수 있는 가스 공급 업체">
     <meta name="twitter:description" content="부산, 경남 지역 최고의 가스 공급 업체">
+    
+    <!-- 구조화된 데이터 (Schema.org) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "신항만 가스",
+      "alternateName": "신항만가스",
+      "description": "부산, 경남 지역 산업용, 의료용, 특수가스, 액체가스 전문 공급업체",
+      "image": "https://sinhangman-gas.onrender.com/images/가스용기1.jpg",
+      "telephone": "010-5513-3481",
+      "email": "",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "을숙도대로677번길 11",
+        "addressLocality": "신평동",
+        "addressRegion": "사하구",
+        "addressCountry": "부산광역시"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "35.0861315",
+        "longitude": "128.9790935"
+      },
+      "url": "https://sinhangman-gas.onrender.com",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "07:30",
+          "closes": "17:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "07:30",
+          "closes": "13:00"
+        }
+      ],
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "부산광역시"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "경상남도"
+        }
+      ],
+      "priceRange": "$$",
+      "paymentAccepted": "현금, 계좌이체",
+      "currenciesAccepted": "KRW"
+    }
+    </script>
     
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
