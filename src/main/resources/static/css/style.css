@@ -27,6 +27,8 @@ body {
     justify-content: center;
     align-items: center;
     transition: all 1s ease-in-out;
+    /* Fallback for failed animations */
+    pointer-events: auto;
 }
 
 .intro-container.fade-text {
@@ -41,11 +43,33 @@ body {
 .intro-container.complete {
     background-color: transparent;
     pointer-events: none;
-    z-index: 0;
+    z-index: -1;
+    display: none;
 }
 
 .intro-image-container.final {
-    z-index: 0;
+    z-index: -1;
+    display: none;
+}
+
+/* Force hide intro for in-app browsers */
+html.skip-intro .intro-container,
+body.skip-intro .intro-container {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    z-index: -9999 !important;
+}
+
+html.skip-intro .main-content-wrapper,
+body.skip-intro .main-content-wrapper {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+html.skip-intro .hero::before,
+body.skip-intro .hero::before {
+    opacity: 0.2 !important;
 }
 
 .intro-text-container {
@@ -78,13 +102,34 @@ body {
 }
 
 @keyframes fadeInChar {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
     to {
         opacity: 1;
         transform: translateY(0);
     }
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+}
+
+/* Fallback for browsers with animation issues */
+@media (prefers-reduced-motion: reduce) {
+    .intro-container {
+        display: none !important;
+    }
+    
+    .main-content-wrapper {
+        opacity: 1 !important;
+    }
+    
+    .hero.bg-ready::before {
+        opacity: 0.2 !important;
+    }
+    
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
 
@@ -140,6 +185,8 @@ body {
 .main-content-wrapper {
     opacity: 0;
     transition: opacity 0.8s ease-in;
+    /* Ensure content is visible if animation fails */
+    min-height: 100vh;
 }
 
 .main-content-wrapper.visible {
@@ -177,9 +224,9 @@ header .logo a {
 }
 
 header .logo img {
-    height: 50px;
+    height: 40px;
     width: auto;
-    max-width: 200px;
+    max-width: 150px;
     object-fit: contain;
 }
 
@@ -1658,6 +1705,11 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    header .logo img {
+        height: 35px;
+        max-width: 120px;
+    }
+    
     header .container {
         flex-direction: column;
     }
@@ -1738,6 +1790,15 @@ footer {
 }
 
 @media (max-width: 480px) {
+    header .logo img {
+        height: 30px;
+        max-width: 100px;
+    }
+    
+    header {
+        padding: 0.75rem 0;
+    }
+    
     .hero-content h1 {
         font-size: 2.5rem;
     }

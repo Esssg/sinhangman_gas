@@ -1,116 +1,199 @@
 // Main JavaScript for Sinhangman Gas Website
 
+// Safe storage check with fallback
+function safeStorageGet(key) {
+    try {
+        return sessionStorage.getItem(key);
+    } catch (e) {
+        return null;
+    }
+}
+
+function safeStorageSet(key, value) {
+    try {
+        sessionStorage.setItem(key, value);
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
+// Skip animation for in-app browsers
+function isInAppBrowser() {
+    var ua = navigator.userAgent || navigator.vendor || window.opera;
+    // Check for common in-app browsers
+    return (ua.indexOf('KAKAOTALK') > -1 || 
+            ua.indexOf('NAVER') > -1 || 
+            ua.indexOf('Instagram') > -1 ||
+            ua.indexOf('FB') > -1 ||
+            ua.indexOf('Line') > -1);
+}
+
+// Skip animation entirely and show content directly
+function skipAnimation() {
+    // Add class to body for CSS control
+    document.body.classList.add('skip-intro');
+    
+    var introContainer = document.getElementById('intro-animation');
+    var mainContent = document.getElementById('main-content');
+    var hero = document.getElementById('hero');
+    
+    if (introContainer) {
+        // Completely hide and remove from layout
+        introContainer.style.display = 'none';
+        introContainer.style.visibility = 'hidden';
+        introContainer.style.opacity = '0';
+        introContainer.style.pointerEvents = 'none';
+        introContainer.style.zIndex = '-9999';
+        // Remove from DOM flow completely
+        introContainer.remove();
+    }
+    if (mainContent) {
+        mainContent.style.opacity = '1';
+        mainContent.style.visibility = 'visible';
+    }
+    if (hero) {
+        hero.classList.add('bg-ready');
+    }
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+}
+
 // Intro Animation
 function playIntroAnimation() {
-    const introContainer = document.getElementById('intro-animation');
-    const mainContent = document.getElementById('main-content');
-    const subtitle = document.querySelector('.intro-subtitle');
-    const title = document.querySelector('.intro-title');
-    const imageContainer = document.querySelector('.intro-image-container');
+    var introContainer = document.getElementById('intro-animation');
+    var mainContent = document.getElementById('main-content');
+    var subtitle = document.querySelector('.intro-subtitle');
+    var title = document.querySelector('.intro-title');
+    var imageContainer = document.querySelector('.intro-image-container');
     
     if (!introContainer || !mainContent) {
         return; // Not on homepage
     }
     
-    // Prevent scrolling during animation
-    document.body.style.overflow = 'hidden';
-    
-    // Text to animate
-    const subtitleText = '부산, 경남 최고의 가스 공급 업체';
-    const titleText = '신항만 가스';
-    
-    // Function to animate text character by character
-    function animateText(element, text, delay) {
-        return new Promise((resolve) => {
-            let charIndex = 0;
-            const interval = setInterval(() => {
+    // Error handling wrapper
+    try {
+        // Prevent scrolling during animation
+        document.body.style.overflow = 'hidden';
+        
+        // Text to animate
+        var subtitleText = '부산, 경남 최고의 가스 공급 업체';
+        var titleText = '신항만 가스';
+        
+        // Function to animate text character by character
+        function animateText(element, text, callback) {
+            var charIndex = 0;
+            var interval = setInterval(function() {
                 if (charIndex < text.length) {
-                    const span = document.createElement('span');
+                    var span = document.createElement('span');
                     span.textContent = text[charIndex];
-                    span.style.animationDelay = `${charIndex * 0.05}s`;
+                    span.style.animationDelay = (charIndex * 0.05) + 's';
                     element.appendChild(span);
                     charIndex++;
                 } else {
                     clearInterval(interval);
-                    setTimeout(resolve, delay);
+                    if (callback) {
+                        setTimeout(callback, 300);
+                    }
                 }
             }, 50);
-        });
-    }
-    
-    // Animation sequence
-    async function runAnimation() {
-        // Step 1: Animate subtitle
-        await animateText(subtitle, subtitleText, 300);
-        
-        // Step 2: Animate title
-        await animateText(title, titleText, 800);
-        
-        // Step 3: Show image from center
-        imageContainer.classList.add('show');
-        await new Promise(resolve => setTimeout(resolve, 400));
-        
-        // Step 4: Expand image to fullscreen
-        imageContainer.classList.add('expand');
-        await new Promise(resolve => setTimeout(resolve, 1200));
-        
-        // Step 5: Fade out text and make background transparent
-        introContainer.classList.add('fade-text');
-        introContainer.style.backgroundColor = 'transparent';
-        await new Promise(resolve => setTimeout(resolve, 500));
-        
-        // Step 6: Show main content behind
-        mainContent.style.opacity = '1';
-        await new Promise(resolve => setTimeout(resolve, 100));
-        
-        // Step 7: Transform image to hero background position with opacity
-        imageContainer.classList.add('shrink-to-hero');
-        
-        // Step 8: Start transitioning to hero background
-        const hero = document.getElementById('hero');
-        if (hero) {
-            hero.classList.add('bg-ready');
         }
         
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        // Animation sequence using callbacks instead of async/await
+        function runAnimation() {
+            // Step 1: Animate subtitle
+            animateText(subtitle, subtitleText, function() {
+                // Step 2: Animate title
+                animateText(title, titleText, function() {
+                    setTimeout(function() {
+                        // Step 3: Show image from center
+                        imageContainer.classList.add('show');
+                        
+                        setTimeout(function() {
+                            // Step 4: Expand image to fullscreen
+                            imageContainer.classList.add('expand');
+                            
+                            setTimeout(function() {
+                                // Step 5: Fade out text and make background transparent
+                                introContainer.classList.add('fade-text');
+                                introContainer.style.backgroundColor = 'transparent';
+                                
+                                setTimeout(function() {
+                                    // Step 6: Show main content behind
+                                    mainContent.style.opacity = '1';
+                                    
+                                    setTimeout(function() {
+                                        // Step 7: Transform image to hero background position
+                                        imageContainer.classList.add('shrink-to-hero');
+                                        
+                                        // Step 8: Start transitioning to hero background
+                                        var hero = document.getElementById('hero');
+                                        if (hero) {
+                                            hero.classList.add('bg-ready');
+                                        }
+                                        
+                                        setTimeout(function() {
+                                            // Step 9: Complete animation
+                                            imageContainer.style.opacity = '0';
+                                            
+                                            setTimeout(function() {
+                                                // Step 10: Clean up and enable scrolling
+                                                introContainer.classList.add('complete');
+                                                imageContainer.classList.add('final');
+                                                document.body.style.overflow = '';
+                                            }, 500);
+                                        }, 1500);
+                                    }, 100);
+                                }, 500);
+                            }, 1200);
+                        }, 400);
+                    }, 800);
+                });
+            });
+        }
         
-        // Step 9: Complete animation - fade out intro image, keep hero background
-        imageContainer.style.opacity = '0';
-        await new Promise(resolve => setTimeout(resolve, 500));
+        // Start animation with timeout fallback
+        var animationTimeout = setTimeout(function() {
+            // If animation takes too long, skip it
+            skipAnimation();
+        }, 10000); // 10 seconds timeout
         
-        // Step 10: Clean up and enable scrolling
-        introContainer.classList.add('complete');
-        imageContainer.classList.add('final');
-        document.body.style.overflow = '';
+        runAnimation();
+        
+        // Clear timeout if animation completes
+        setTimeout(function() {
+            clearTimeout(animationTimeout);
+        }, 6000);
+        
+    } catch (error) {
+        // If any error occurs, skip animation
+        console.error('Animation error:', error);
+        skipAnimation();
     }
-    
-    // Start animation
-    runAnimation();
 }
 
 // Check if animation has been shown in this session
 if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
-    const hasSeenIntro = sessionStorage.getItem('hasSeenIntro');
-    
-    if (!hasSeenIntro) {
-        sessionStorage.setItem('hasSeenIntro', 'true');
-        playIntroAnimation();
+    // In-app browser detection - skip animation
+    if (isInAppBrowser()) {
+        skipAnimation();
     } else {
-        // Skip animation
-        const introContainer = document.getElementById('intro-animation');
-        const mainContent = document.getElementById('main-content');
-        const hero = document.getElementById('hero');
-        if (introContainer && mainContent) {
-            introContainer.style.display = 'none';
-            mainContent.style.opacity = '1';
-            if (hero) {
-                hero.classList.add('bg-ready');
-            }
+        var hasSeenIntro = safeStorageGet('hasSeenIntro');
+        
+        if (!hasSeenIntro) {
+            safeStorageSet('hasSeenIntro', 'true');
+            // Add a small delay to ensure DOM is fully ready
+            setTimeout(function() {
+                playIntroAnimation();
+            }, 100);
+        } else {
+            // Skip animation
+            skipAnimation();
         }
     }
 } else {
     // Not on homepage - ensure hero background is visible if hero section exists
-    const hero = document.getElementById('hero');
+    var hero = document.getElementById('hero');
     if (hero) {
         hero.classList.add('bg-ready');
     }

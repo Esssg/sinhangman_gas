@@ -83,7 +83,34 @@
     <link rel="icon" type="image/png" th:href="@{/images/로고_간략.png}">
     <link rel="apple-touch-icon" th:href="@{/images/로고_간략.png}">
     
+    <!-- Compatibility -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    
+    <!-- Fallback styles for failed animations -->
+    <noscript>
+        <style>
+            #intro-animation { display: none !important; }
+            #main-content { opacity: 1 !important; }
+            .hero.bg-ready::before { opacity: 0.2 !important; }
+        </style>
+    </noscript>
+    
+    <!-- Immediate in-app browser detection (before body renders) -->
+    <script>
+        (function() {
+            var ua = navigator.userAgent || navigator.vendor || window.opera;
+            var isInApp = (ua.indexOf('KAKAOTALK') > -1 || 
+                          ua.indexOf('NAVER') > -1 || 
+                          ua.indexOf('Instagram') > -1 ||
+                          ua.indexOf('FB') > -1 ||
+                          ua.indexOf('Line') > -1);
+            if (isInApp) {
+                document.documentElement.classList.add('skip-intro');
+            }
+        })();
+    </script>
 </head>
 <body>
     <!-- Intro Animation -->
