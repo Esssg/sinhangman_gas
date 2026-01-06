@@ -54,20 +54,33 @@ function playIntroAnimation() {
         imageContainer.classList.add('expand');
         await new Promise(resolve => setTimeout(resolve, 1200));
         
-        // Step 5: Fade out text
+        // Step 5: Fade out text and make background transparent
         introContainer.classList.add('fade-text');
+        introContainer.style.backgroundColor = 'transparent';
         await new Promise(resolve => setTimeout(resolve, 500));
         
         // Step 6: Show main content behind
         mainContent.style.opacity = '1';
         await new Promise(resolve => setTimeout(resolve, 100));
         
-        // Step 7: Shrink image back to hero section position
+        // Step 7: Transform image to hero background position with opacity
         imageContainer.classList.add('shrink-to-hero');
-        await new Promise(resolve => setTimeout(resolve, 1200));
         
-        // Step 8: Remove intro and enable scrolling
-        introContainer.classList.add('hidden');
+        // Step 8: Start transitioning to hero background
+        const hero = document.getElementById('hero');
+        if (hero) {
+            hero.classList.add('bg-ready');
+        }
+        
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        // Step 9: Complete animation - fade out intro image, keep hero background
+        imageContainer.style.opacity = '0';
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        // Step 10: Clean up and enable scrolling
+        introContainer.classList.add('complete');
+        imageContainer.classList.add('final');
         document.body.style.overflow = '';
     }
     
@@ -86,10 +99,20 @@ if (window.location.pathname === '/' || window.location.pathname === '/index.htm
         // Skip animation
         const introContainer = document.getElementById('intro-animation');
         const mainContent = document.getElementById('main-content');
+        const hero = document.getElementById('hero');
         if (introContainer && mainContent) {
             introContainer.style.display = 'none';
             mainContent.style.opacity = '1';
+            if (hero) {
+                hero.classList.add('bg-ready');
+            }
         }
+    }
+} else {
+    // Not on homepage - ensure hero background is visible if hero section exists
+    const hero = document.getElementById('hero');
+    if (hero) {
+        hero.classList.add('bg-ready');
     }
 }
 
@@ -118,6 +141,39 @@ function handleMapDisplay() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    
+    // Handle scroll indicator
+    const scrollIndicator = document.getElementById('scrollIndicator');
+    const hero = document.getElementById('hero');
+    
+    if (scrollIndicator && hero) {
+        // Smooth scroll when clicking the indicator
+        scrollIndicator.addEventListener('click', function() {
+            const servicesSection = document.querySelector('.services');
+            if (servicesSection) {
+                servicesSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+        
+        // Hide/show scroll indicator based on scroll position
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const heroHeight = hero.offsetHeight;
+            
+            // Hide when scrolled past hero section
+            if (scrollTop > heroHeight * 0.5) {
+                scrollIndicator.classList.add('hidden');
+            } else {
+                scrollIndicator.classList.remove('hidden');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+    }
     
     // Handle map display on location page
     handleMapDisplay();
