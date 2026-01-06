@@ -53,23 +53,51 @@ body {
 }
 
 /* Force hide intro for in-app browsers */
+html.skip-intro #intro-animation,
 html.skip-intro .intro-container,
-body.skip-intro .intro-container {
+html.skip-intro .intro-animation,
+html.skip-intro .intro-image-container,
+html.skip-intro .intro-text-container,
+html.skip-intro .intro-image,
+body.skip-intro #intro-animation,
+body.skip-intro .intro-container,
+body.skip-intro .intro-animation,
+body.skip-intro .intro-image-container,
+body.skip-intro .intro-text-container,
+body.skip-intro .intro-image {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
     z-index: -9999 !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    max-width: 0 !important;
+    max-height: 0 !important;
 }
 
+html.skip-intro #main-content,
 html.skip-intro .main-content-wrapper,
+body.skip-intro #main-content,
 body.skip-intro .main-content-wrapper {
     opacity: 1 !important;
     visibility: visible !important;
+    position: static !important;
 }
 
 html.skip-intro .hero::before,
 body.skip-intro .hero::before {
     opacity: 0.2 !important;
+}
+
+html.skip-intro header .logo img,
+body.skip-intro header .logo img {
+    height: 28px !important;
+    max-width: 90px !important;
 }
 
 .intro-text-container {
@@ -224,9 +252,9 @@ header .logo a {
 }
 
 header .logo img {
-    height: 40px;
+    height: 35px;
     width: auto;
-    max-width: 150px;
+    max-width: 120px;
     object-fit: contain;
 }
 
@@ -1706,12 +1734,17 @@ footer {
 /* Responsive Design */
 @media (max-width: 768px) {
     header .logo img {
-        height: 35px;
-        max-width: 120px;
+        height: 28px;
+        max-width: 90px;
+    }
+    
+    header {
+        padding: 0.75rem 0;
     }
     
     header .container {
         flex-direction: column;
+        padding: 0 15px;
     }
     
     nav ul {
@@ -1791,12 +1824,12 @@ footer {
 
 @media (max-width: 480px) {
     header .logo img {
-        height: 30px;
-        max-width: 100px;
+        height: 25px;
+        max-width: 80px;
     }
     
     header {
-        padding: 0.75rem 0;
+        padding: 0.6rem 0;
     }
     
     .hero-content h1 {

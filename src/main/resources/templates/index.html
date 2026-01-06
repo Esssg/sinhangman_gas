@@ -108,9 +108,62 @@
                           ua.indexOf('Line') > -1);
             if (isInApp) {
                 document.documentElement.classList.add('skip-intro');
+                // Add inline styles immediately
+                var style = document.createElement('style');
+                style.innerHTML = '#intro-animation, .intro-container, .intro-image-container, .intro-text-container, .intro-image { display: none !important; position: absolute !important; left: -9999px !important; width: 0 !important; height: 0 !important; } #main-content { opacity: 1 !important; } body { overflow: auto !important; }';
+                document.head.appendChild(style);
             }
         })();
     </script>
+    
+    <!-- Force hide intro animation for in-app browsers -->
+    <style id="inapp-override">
+        @media all {
+            html.skip-intro #intro-animation,
+            html.skip-intro .intro-animation,
+            html.skip-intro .intro-container,
+            html.skip-intro .intro-image-container,
+            html.skip-intro .intro-text-container,
+            html.skip-intro .intro-image,
+            body.skip-intro #intro-animation,
+            body.skip-intro .intro-animation,
+            body.skip-intro .intro-container,
+            body.skip-intro .intro-image-container,
+            body.skip-intro .intro-text-container,
+            body.skip-intro .intro-image {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                position: absolute !important;
+                left: -9999px !important;
+                top: -9999px !important;
+                z-index: -9999 !important;
+                width: 0 !important;
+                height: 0 !important;
+                max-width: 0 !important;
+                max-height: 0 !important;
+                overflow: hidden !important;
+            }
+            
+            html.skip-intro #main-content,
+            body.skip-intro #main-content {
+                opacity: 1 !important;
+                visibility: visible !important;
+                position: static !important;
+            }
+            
+            html.skip-intro header .logo img,
+            body.skip-intro header .logo img {
+                height: 26px !important;
+                max-width: 85px !important;
+            }
+            
+            html.skip-intro body,
+            body.skip-intro {
+                overflow: auto !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Intro Animation -->

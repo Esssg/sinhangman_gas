@@ -32,25 +32,32 @@ function isInAppBrowser() {
 // Skip animation entirely and show content directly
 function skipAnimation() {
     // Add class to body for CSS control
+    document.documentElement.classList.add('skip-intro');
     document.body.classList.add('skip-intro');
     
-    var introContainer = document.getElementById('intro-animation');
+    // Hide all intro elements
+    var elementsToHide = [
+        document.getElementById('intro-animation'),
+        document.querySelector('.intro-container'),
+        document.querySelector('.intro-image-container'),
+        document.querySelector('.intro-text-container'),
+        document.querySelector('.intro-image')
+    ];
+    
+    elementsToHide.forEach(function(elem) {
+        if (elem) {
+            elem.style.cssText = 'display: none !important; visibility: hidden !important; opacity: 0 !important; position: absolute !important; left: -9999px !important; width: 0 !important; height: 0 !important;';
+            try {
+                elem.remove();
+            } catch(e) {}
+        }
+    });
+    
     var mainContent = document.getElementById('main-content');
     var hero = document.getElementById('hero');
     
-    if (introContainer) {
-        // Completely hide and remove from layout
-        introContainer.style.display = 'none';
-        introContainer.style.visibility = 'hidden';
-        introContainer.style.opacity = '0';
-        introContainer.style.pointerEvents = 'none';
-        introContainer.style.zIndex = '-9999';
-        // Remove from DOM flow completely
-        introContainer.remove();
-    }
     if (mainContent) {
-        mainContent.style.opacity = '1';
-        mainContent.style.visibility = 'visible';
+        mainContent.style.cssText = 'opacity: 1 !important; visibility: visible !important; position: static !important;';
     }
     if (hero) {
         hero.classList.add('bg-ready');
@@ -170,6 +177,54 @@ function playIntroAnimation() {
         console.error('Animation error:', error);
         skipAnimation();
     }
+}
+
+// Immediate execution for in-app browsers (before DOMContentLoaded)
+if (isInAppBrowser()) {
+    // Apply skip immediately
+    document.documentElement.classList.add('skip-intro');
+    document.body.classList.add('skip-intro');
+    
+    // Try to hide intro immediately even before DOM is ready
+    (function() {
+        var checkAndHide = function() {
+            var elementsToHide = [
+                'intro-animation',
+                'intro-container',
+                'intro-image-container',
+                'intro-text-container',
+                'intro-image'
+            ];
+            
+            elementsToHide.forEach(function(id) {
+                var elem = document.getElementById(id) || document.querySelector('.' + id);
+                if (elem) {
+                    elem.style.cssText = 'display: none !important; visibility: hidden !important; opacity: 0 !important; position: absolute !important; left: -9999px !important; width: 0 !important; height: 0 !important;';
+                    try { elem.remove(); } catch(e) {}
+                }
+            });
+            
+            var mainContent = document.getElementById('main-content');
+            var hero = document.getElementById('hero');
+            
+            if (mainContent) {
+                mainContent.style.cssText = 'opacity: 1 !important; visibility: visible !important; position: static !important;';
+            }
+            if (hero) {
+                hero.classList.add('bg-ready');
+            }
+            document.body.style.overflow = '';
+        };
+        
+        // Execute immediately
+        checkAndHide();
+        
+        // Execute again after tiny delays
+        setTimeout(checkAndHide, 0);
+        setTimeout(checkAndHide, 10);
+        setTimeout(checkAndHide, 50);
+        setTimeout(checkAndHide, 100);
+    })();
 }
 
 // Check if animation has been shown in this session
