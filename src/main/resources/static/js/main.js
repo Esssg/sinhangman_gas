@@ -93,7 +93,34 @@ if (window.location.pathname === '/' || window.location.pathname === '/index.htm
     }
 }
 
+// Mobile device detection for map display
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+           || (window.innerWidth <= 768);
+}
+
+// Handle map display based on device type
+function handleMapDisplay() {
+    const desktopMap = document.getElementById('desktop-map');
+    const mobileMap = document.getElementById('mobile-map');
+    
+    if (desktopMap && mobileMap) {
+        if (isMobileDevice()) {
+            desktopMap.style.display = 'none';
+            mobileMap.style.display = 'block';
+            console.log('모바일 기기 감지: 모바일용 지도 표시');
+        } else {
+            desktopMap.style.display = 'block';
+            mobileMap.style.display = 'none';
+            console.log('데스크톱 기기 감지: iframe 지도 표시');
+        }
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    
+    // Handle map display on location page
+    handleMapDisplay();
     
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -196,6 +223,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('resize', createMobileMenu);
     createMobileMenu();
+    
+    // Update map display on window resize
+    window.addEventListener('resize', handleMapDisplay);
 
     console.log('신항만 가스 웹사이트에 오신 것을 환영합니다!');
 });

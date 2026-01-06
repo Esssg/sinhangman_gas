@@ -701,11 +701,15 @@ footer {
     }
     
     .desktop-map {
-        display: none;
+        display: none !important;
     }
     
     .mobile-map {
-        display: block;
+        display: block !important;
+    }
+    
+    .map-link-button {
+        margin-top: 1.5rem;
     }
     
     .direction-item h3 {
@@ -1272,6 +1276,14 @@ footer {
 
 .mobile-map {
     display: none;
+    width: 100%;
+    min-height: 300px;
+}
+
+.mobile-map .map-link {
+    display: block;
+    text-decoration: none;
+    width: 100%;
 }
 
 .map-placeholder {
@@ -1281,6 +1293,10 @@ footer {
     text-align: center;
     border: 2px dashed #d1d5db;
     transition: all 0.3s;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .map-placeholder:hover {
@@ -1322,6 +1338,15 @@ footer {
 
 .map-placeholder:hover .map-button {
     background: #ea580c;
+}
+
+.map-link-button {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.map-link-button .btn-primary {
+    display: inline-block;
 }
 
 .directions {
