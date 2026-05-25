@@ -1,5 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const services = [
+    ['01', '가정용 가스 공급', '일반 가정용 LPG를 안전하게 공급합니다.'],
+    ['02', '업소용 가스 공급', '음식점과 공장 등 사업장에 필요한 가스를 공급합니다.'],
+    ['03', '의료용 가스 공급', '병원과 의료기관에 의료용 산소 등을 공급합니다.'],
+    ['04', '산업용 가스 공급', '산소, 알곤, 헬륨, 탄산 등 산업용 가스를 취급합니다.'],
+    ['05', '배달 서비스', '전화 한 통으로 필요한 현장에 신속하게 배달합니다.'],
+    ['06', '설치 및 점검', '전문 기사가 안전하게 설치하고 정기 점검을 지원합니다.']
+];
 ---
 <BaseLayout
     title="회사소개 - 신항만 가스 | 부산, 경남 가스 공급 전문"
@@ -12,73 +21,56 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 >
     <section class="page-header">
         <div class="container">
+            <p class="section-kicker">/ ABOUT</p>
             <h1>회사소개</h1>
-            <p>신항만 가스를 소개합니다</p>
+            <p>부산·경남 가스 공급 전문업체입니다.</p>
         </div>
     </section>
 
     <section class="content-section">
-        <div class="container">
-            <div class="about-content">
-                <h2>신항만 가스</h2>
-                <p class="lead">부산 사하구 지역에서 안전하고 신뢰할 수 있는 가정용 LPG, 업소용, 의료용, 산업용 가스 (산소, 알곤, 헬륨, 탄산 등 모든 가스)를 취급하는 전문 업체입니다.</p>
-
-                <div class="about-image-section">
-                    <img src="/images/truck-1.jpeg" alt="신항만 가스 배달 차량" class="about-main-img">
+        <div class="container about-content">
+            <div class="split-heading">
+                <div>
+                    <p class="section-kicker">/ WHO WE ARE</p>
+                    <h2>안전한 가스 공급</h2>
                 </div>
+                <p class="lead">가정용 LPG와 업소용·의료용·산업용 가스를 취급합니다. 지역사회 공급망을 안정적으로 운영합니다.</p>
+            </div>
 
-                <div class="about-details">
+            <div class="about-image-section">
+                <img src="/images/truck-1.jpeg" alt="신항만 가스 배달 차량" class="about-main-img">
+            </div>
+
+            <div class="detail-grid">
+                <article>
+                    <p class="section-kicker">VISION</p>
                     <h3>우리의 비전</h3>
-                    <p>고객의 안전과 편의를 최우선으로 생각하며, 지역 사회에 꼭 필요한 기업으로 성장하고 있습니다.</p>
-
-                    <h3>우리의 미션</h3>
-                    <ul>
-                        <li>안전한 가스 공급 및 관리</li>
-                        <li>신속하고 정확한 배달 서비스</li>
-                        <li>전문적인 설치 및 점검 서비스</li>
-                        <li>고객 만족을 위한 지속적인 노력</li>
-                    </ul>
-
+                    <p>안전 공급과 빠른 대응으로 신뢰를 만듭니다.</p>
+                </article>
+                <article>
+                    <p class="section-kicker">AREA</p>
                     <h3>서비스 지역</h3>
-                    <p>부산전역 및 경남일대(거제, 마산, 창원, 진해 등)를 중심으로 서비스를 제공하고 있습니다.</p>
+                    <p>부산·경남 주요 지역에 공급 상담을 제공합니다.</p>
+                </article>
+            </div>
 
-                    <h3>주요 서비스</h3>
-                    <div class="service-list">
-                        <div class="service-item">
-                            <h4>가정용 가스 공급</h4>
-                            <p>일반 가정에서 사용하는 LPG 가스를 안전하게 공급합니다.</p>
-                        </div>
-                        <div class="service-item">
-                            <h4>업소용 가스 공급</h4>
-                            <p>음식점, 공장 등 사업장에 대량으로 공급합니다.</p>
-                        </div>
-                        <div class="service-item">
-                            <h4>의료용 가스 공급</h4>
-                            <p>병원 및 의료기관에 의료용 산소 등을 전문적으로 공급합니다.</p>
-                        </div>
-                        <div class="service-item">
-                            <h4>산업용 가스 공급</h4>
-                            <p>산업 현장에서 필요한 각종 산업용 가스를 공급합니다.</p>
-                        </div>
-                        <div class="service-item">
-                            <h4>배달 서비스</h4>
-                            <p>전화 한 통이면 신속하게 배달해드립니다.</p>
-                        </div>
-                        <div class="service-item">
-                            <h4>설치 및 점검 서비스</h4>
-                            <p>전문 기사가 안전하게 설치하고 정기적으로 점검합니다.</p>
-                        </div>
-                    </div>
+            <div class="service-list linear-list">
+                {services.map(([no, title, desc]) => (
+                    <article class="service-item linear-item reveal-item">
+                        <span>{no}</span>
+                        <h3>{title}</h3>
+                        <p>{desc}</p>
+                    </article>
+                ))}
+            </div>
 
-                    <div class="about-images-layout">
-                        <div class="about-images-top">
-                            <img src="/images/truck-1.jpeg" alt="배달 차량" class="about-grid-img">
-                            <img src="/images/truck-2.jpeg" alt="서비스 차량" class="about-grid-img">
-                        </div>
-                        <div class="about-images-bottom">
-                            <img src="/images/work-1.jpeg" alt="전문 작업" class="about-work-img">
-                        </div>
-                    </div>
+            <div class="about-images-layout">
+                <div class="about-images-top">
+                    <img src="/images/truck-1.jpeg" alt="배달 차량" class="about-grid-img">
+                    <img src="/images/truck-2.jpeg" alt="서비스 차량" class="about-grid-img">
+                </div>
+                <div class="about-images-bottom">
+                    <img src="/images/work-1.jpeg" alt="전문 작업" class="about-work-img">
                 </div>
             </div>
         </div>

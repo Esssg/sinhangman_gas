@@ -1,6 +1,29 @@
 ---
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+
+const metrics = [
+    { value: '07:30', label: '평일 영업 시작' },
+    { value: '부산·경남', label: '주요 공급 지역' },
+    { value: '산업·의료·특수', label: '취급 가스 범위' },
+    { value: '010-5513-3481', label: '즉시 문의' }
+];
+
+const services = [
+    ['01', '산업용 가스', '산업 현장에 필요한 주요 가스를 안정적으로 공급합니다.'],
+    ['02', '의료용 가스', '의료용 산소와 관련 가스를 전문적으로 취급합니다.'],
+    ['03', '특수가스', '고순도, 혼합, 연구용 가스를 용도에 맞춰 안내합니다.'],
+    ['04', '액체가스', '액화질소와 액체아르곤 등 액체가스 공급을 상담합니다.'],
+    ['05', '정기 배달', '사업장 사용량과 일정에 맞춰 정기배달을 지원합니다.'],
+    ['06', '설치 및 점검', '사용 환경에 맞춰 설치, 교체, 정기점검을 제공합니다.']
+];
+
+const strengths = [
+    ['1', '안전 기준 중심', '보관, 이동, 설치 과정에서 안전 기준을 우선으로 확인합니다.'],
+    ['2', '지역 밀착 대응', '부산 사하구를 중심으로 부산 전역과 경남 주요 지역에 대응합니다.'],
+    ['3', '현장 이해도', '가정, 업소, 산업 현장의 사용 환경에 맞춰 필요한 가스를 안내합니다.'],
+    ['4', '빠른 연락 동선', '전화 한 번으로 제품, 배달, 점검 상담까지 바로 연결됩니다.']
+];
 ---
 <!DOCTYPE html>
 <html lang="ko">
@@ -43,28 +66,12 @@ import Footer from '../components/Footer.astro';
       },
       "url": "https://sinhangman-gas.onrender.com",
       "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "opens": "07:30",
-          "closes": "17:30"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": "Saturday",
-          "opens": "07:30",
-          "closes": "13:00"
-        }
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "07:30", "closes": "17:30" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "07:30", "closes": "13:00" }
       ],
       "areaServed": [
-        {
-          "@type": "City",
-          "name": "부산광역시"
-        },
-        {
-          "@type": "AdministrativeArea",
-          "name": "경상남도"
-        }
+        { "@type": "City", "name": "부산광역시" },
+        { "@type": "AdministrativeArea", "name": "경상남도" }
       ],
       "priceRange": "$$",
       "paymentAccepted": "현금, 계좌이체",
@@ -75,234 +82,160 @@ import Footer from '../components/Footer.astro';
     <link rel="apple-touch-icon" href="/images/logo-simple.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="/css/style.css">
-    <noscript>
-        <style>
-            #intro-animation { display: none !important; }
-            #main-content { opacity: 1 !important; }
-            .hero.bg-ready::before { opacity: 0.2 !important; }
-        </style>
-    </noscript>
-    <script is:inline>
-        (function() {
-            var ua = navigator.userAgent || navigator.vendor || window.opera;
-            var isInApp = (ua.indexOf('KAKAOTALK') > -1 ||
-                          ua.indexOf('NAVER') > -1 ||
-                          ua.indexOf('Instagram') > -1 ||
-                          ua.indexOf('FB') > -1 ||
-                          ua.indexOf('Line') > -1);
-            if (isInApp) {
-                document.documentElement.classList.add('skip-intro');
-                var style = document.createElement('style');
-                style.innerHTML = '#intro-animation, .intro-container, .intro-image-container, .intro-text-container, .intro-image { display: none !important; position: absolute !important; left: -9999px !important; width: 0 !important; height: 0 !important; } #main-content { opacity: 1 !important; } body { overflow: auto !important; }';
-                document.head.appendChild(style);
-            }
-        })();
-    </script>
-    <style id="inapp-override">
-        @media all {
-            html.skip-intro #intro-animation,
-            html.skip-intro .intro-animation,
-            html.skip-intro .intro-container,
-            html.skip-intro .intro-image-container,
-            html.skip-intro .intro-text-container,
-            html.skip-intro .intro-image,
-            body.skip-intro #intro-animation,
-            body.skip-intro .intro-animation,
-            body.skip-intro .intro-container,
-            body.skip-intro .intro-image-container,
-            body.skip-intro .intro-text-container,
-            body.skip-intro .intro-image {
-                display: none !important;
-                visibility: hidden !important;
-                opacity: 0 !important;
-                position: absolute !important;
-                left: -9999px !important;
-                top: -9999px !important;
-                z-index: -9999 !important;
-                width: 0 !important;
-                height: 0 !important;
-                max-width: 0 !important;
-                max-height: 0 !important;
-                overflow: hidden !important;
-            }
-
-            html.skip-intro #main-content,
-            body.skip-intro #main-content {
-                opacity: 1 !important;
-                visibility: visible !important;
-                position: static !important;
-            }
-
-            html.skip-intro header .logo img,
-            body.skip-intro header .logo img {
-                height: 26px !important;
-                max-width: 85px !important;
-            }
-
-            html.skip-intro body,
-            body.skip-intro {
-                overflow: auto !important;
-            }
-        }
-    </style>
 </head>
 <body>
-    <div id="intro-animation" class="intro-container">
-        <div class="intro-text-container">
-            <p class="intro-subtitle"></p>
-            <h1 class="intro-title"></h1>
-        </div>
-        <div class="intro-image-container">
-            <img src="/images/gas-cylinder-1.jpg" alt="신항만가스" class="intro-image">
+    <div class="intro-screen" id="introScreen" aria-hidden="true">
+        <div class="intro-inner">
+            <span class="intro-kicker">SINHANGMAN GAS</span>
+            <strong>신항만 가스</strong>
+            <span class="intro-line"></span>
+            <p>부산·경남 가스 공급</p>
         </div>
     </div>
 
-    <div id="main-content" class="main-content-wrapper">
+    <div id="main-content" class="main-content-wrapper visible">
         <Navigation />
 
-        <section class="hero" id="hero">
-            <div class="hero-content">
-                <h2>안전하고 신뢰할 수 있는</h2>
-                <h1>신항만 가스</h1>
-                <p>부산, 경남 지역 최고의 가스 공급 업체</p>
-                <a href="tel:010-5513-3481" class="btn-primary">지금 문의하기</a>
-            </div>
-        </section>
-
-        <div class="scroll-indicator" id="scrollIndicator">
-            <div class="scroll-circle">
-                <span>Scroll</span>
-                <div class="scroll-arrow">↓</div>
-            </div>
-        </div>
-
-        <section class="services">
-            <div class="container">
-                <h2>주요 서비스</h2>
-                <div class="service-grid">
-                    <div class="service-card">
-                        <div class="service-icon">🏠</div>
-                        <h3>가정용 가스</h3>
-                        <p>안전한 가정용 LPG 공급</p>
-                        <p class="service-desc">일상 생활에 필요한 가스를 안전하고 신속하게 공급해드립니다.</p>
+        <main>
+            <section class="hero" id="hero">
+                <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
+                <div class="hero-media" aria-hidden="true">
+                    <img src="/images/gas-cylinder-1.jpg" alt="">
+                </div>
+                <div class="hero-content">
+                    <p class="section-kicker">/ SINHANGMAN GAS</p>
+                    <h1>신항만 가스</h1>
+                    <p class="hero-lead">부산·경남 산업용, 의료용, 특수가스 공급</p>
+                    <div class="hero-pills" aria-label="주요 취급 분야">
+                        <span>산업용</span>
+                        <span>의료용</span>
+                        <span>특수가스</span>
+                        <span>정기 배달</span>
                     </div>
-                    <div class="service-card">
-                        <div class="service-icon">🏢</div>
-                        <h3>업소용 가스</h3>
-                        <p>음식점, 사업장 대량 공급</p>
-                        <p class="service-desc">음식점, 공장 등 대량 사용처에 안정적으로 공급합니다.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">🏥</div>
-                        <h3>의료용 가스</h3>
-                        <p>병원 및 의료기관 전문 공급</p>
-                        <p class="service-desc">의료용 산소 등 의료기관에 필요한 가스를 전문적으로 공급합니다.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">🏭</div>
-                        <h3>산업용 가스</h3>
-                        <p>공장 및 산업 현장 공급</p>
-                        <p class="service-desc">산업 현장에서 필요한 각종 산업용 가스를 공급합니다.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">🚚</div>
-                        <h3>배달 서비스</h3>
-                        <p>신속하고 정확한 배달</p>
-                        <p class="service-desc">전화 한 통이면 빠르게 배달해드립니다.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">🔧</div>
-                        <h3>설치 및 점검</h3>
-                        <p>전문 기사의 안전 점검</p>
-                        <p class="service-desc">정기적인 안전 점검으로 안심하고 사용하실 수 있습니다.</p>
+                    <div class="hero-actions">
+                        <a href="tel:010-5513-3481" class="btn-primary">전화 문의</a>
+                        <a href="/products/" class="btn-secondary">제품 보기</a>
                     </div>
                 </div>
-            </div>
-        </section>
+                <div class="hero-visual" aria-hidden="true">
+                    <figure class="hero-photo hero-photo-main">
+                        <img src="/images/truck-1.jpeg" alt="">
+                    </figure>
+                    <figure class="hero-photo hero-photo-small">
+                        <img src="/images/factory-1.jpeg" alt="">
+                    </figure>
+                    <div class="hero-status-card">
+                        <span>SUPPLY AREA</span>
+                        <strong>부산·경남</strong>
+                        <p>산업·의료·특수가스</p>
+                    </div>
+                    <div class="hero-call-card">
+                        <span>DIRECT CALL</span>
+                        <strong>010-5513-3481</strong>
+                    </div>
+                </div>
+                <div class="hero-bottom">
+                    <p>부산 사하구 을숙도대로677번길 11</p>
+                    <a href="#services">Scroll down</a>
+                </div>
+            </section>
 
-        <section class="gallery-section">
-            <div class="container">
-                <h2>신항만 가스 현장</h2>
-                <p class="section-desc">안전하고 신속한 서비스를 제공하는 신항만 가스의 모습입니다</p>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="/images/factory-1.jpeg" alt="신항만 가스 저장소">
-                        <div class="gallery-overlay"><p>가스 저장 시설</p></div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="/images/truck-1.jpeg" alt="배달 차량">
-                        <div class="gallery-overlay"><p>배달 차량</p></div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="/images/work-1.jpeg" alt="작업 현장">
-                        <div class="gallery-overlay"><p>전문 작업</p></div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="/images/factory-2.jpeg" alt="시설 전경">
-                        <div class="gallery-overlay"><p>시설 전경</p></div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="/images/truck-2.jpeg" alt="배송 서비스">
-                        <div class="gallery-overlay"><p>신속 배송</p></div>
-                    </div>
-                    <div class="gallery-item">
-                        <img src="/images/factory-3.jpeg" alt="안전 시설">
-                        <div class="gallery-overlay"><p>안전 관리</p></div>
-                    </div>
+            <section class="metrics-section" aria-label="핵심 정보">
+                <div class="container metric-grid">
+                    {metrics.map((item) => (
+                        <div class="metric-item">
+                            <strong>{item.value}</strong>
+                            <span>{item.label}</span>
+                        </div>
+                    ))}
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="why-choose-us">
-            <div class="container">
-                <h2>왜 신항만 가스인가?</h2>
-                <div class="features">
-                    <div class="feature">
-                        <h3>✓ 안전성</h3>
-                        <p>엄격한 안전 기준과 정기적인 점검</p>
+            <section class="services section-block" id="services">
+                <div class="container split-heading">
+                    <div>
+                        <p class="section-kicker">/ SERVICES</p>
+                        <h2>정확한 가스 공급</h2>
                     </div>
-                    <div class="feature">
-                        <h3>✓ 신속성</h3>
-                        <p>빠른 배달과 즉각적인 대응</p>
-                    </div>
-                    <div class="feature">
-                        <h3>✓ 신뢰성</h3>
-                        <p>지역 밀착형 서비스로 오랜 신뢰</p>
-                    </div>
-                    <div class="feature">
-                        <h3>✓ 전문성</h3>
-                        <p>숙련된 전문 인력의 서비스</p>
-                    </div>
+                    <p>LPG·산업용·의료용·특수가스를 상담합니다.</p>
                 </div>
-            </div>
-        </section>
+                <div class="container service-list linear-list">
+                    {services.map(([no, title, desc]) => (
+                        <article class="service-item linear-item reveal-item">
+                            <span>{no}</span>
+                            <h3>{title}</h3>
+                            <p>{desc}</p>
+                        </article>
+                    ))}
+                </div>
+            </section>
 
-        <section class="contact">
-            <div class="container">
-                <h2>연락처</h2>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <h3>📞 전화</h3>
-                        <p><a href="tel:010-5513-3481">010-5513-3481</a></p>
+            <section class="gallery-section section-block">
+                <div class="container split-heading">
+                    <div>
+                        <p class="section-kicker">/ FIELD</p>
+                        <h2>현장 공급 역량</h2>
                     </div>
-                    <div class="contact-item">
-                        <h3>📍 주소</h3>
-                        <p>부산 사하구 을숙도대로677번길 11</p>
-                        <p class="address-sub">(부산 사하구 신평동 568-4)</p>
-                    </div>
-                    <div class="contact-item">
-                        <h3>🕐 영업시간</h3>
-                        <p>평일 07:30 - 17:30</p>
-                        <p>토요일 07:30 - 13:00</p>
-                        <p>일요일 및 공휴일 휴무</p>
+                    <p>저장 시설과 배송 차량으로 안정적인 공급을 유지합니다.</p>
+                </div>
+                <div class="container editorial-gallery">
+                    <figure class="gallery-feature">
+                        <img src="/images/factory-1.jpeg" alt="신항만 가스 저장 시설">
+                        <figcaption>가스 저장 시설</figcaption>
+                    </figure>
+                    <div class="gallery-stack">
+                        <figure><img src="/images/truck-1.jpeg" alt="신항만 가스 배달 차량"><figcaption>배달 차량</figcaption></figure>
+                        <figure><img src="/images/work-1.jpeg" alt="신항만 가스 작업 현장"><figcaption>전문 작업</figcaption></figure>
+                        <figure><img src="/images/factory-3.jpeg" alt="신항만 가스 안전 시설"><figcaption>안전 관리</figcaption></figure>
                     </div>
                 </div>
-                <div class="cta-buttons">
-                    <a href="tel:010-5513-3481" class="btn-secondary">전화 문의하기</a>
-                    <a href="/location/" class="btn-secondary">오시는 길 보기</a>
+            </section>
+
+            <section class="why-choose-us section-block">
+                <div class="container split-heading">
+                    <div>
+                        <p class="section-kicker">/ ADVANTAGES</p>
+                        <h2>서비스 강점</h2>
+                    </div>
                 </div>
-            </div>
-        </section>
+                <div class="advantage-list">
+                    {strengths.map(([no, title, desc]) => (
+                        <article class="advantage-row reveal-item">
+                            <span>{no}</span>
+                            <h3>{title}</h3>
+                            <p>{desc}</p>
+                        </article>
+                    ))}
+                </div>
+            </section>
+
+            <section class="contact section-block">
+                <div class="container contact-panel">
+                    <p class="section-kicker">/ CONTACT</p>
+                    <h2>가스 공급 문의</h2>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <h3>전화</h3>
+                            <p><a href="tel:010-5513-3481">010-5513-3481</a></p>
+                        </div>
+                        <div class="contact-item">
+                            <h3>주소</h3>
+                            <p>부산 사하구 을숙도대로677번길 11</p>
+                            <p class="address-sub">부산 사하구 신평동 568-4</p>
+                        </div>
+                        <div class="contact-item">
+                            <h3>영업시간</h3>
+                            <p>평일 07:30 - 17:30</p>
+                            <p>토요일 07:30 - 13:00</p>
+                        </div>
+                    </div>
+                    <div class="cta-buttons">
+                        <a href="tel:010-5513-3481" class="btn-primary">전화 문의하기</a>
+                        <a href="/location/" class="btn-secondary">오시는 길 보기</a>
+                    </div>
+                </div>
+            </section>
+        </main>
 
         <Footer />
     </div>

@@ -11,74 +11,48 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 >
     <section class="page-header">
         <div class="container">
+            <p class="section-kicker">/ LOCATION</p>
             <h1>오시는 길</h1>
-            <p>신항만 가스 찾아오시는 방법</p>
+            <p>부산 사하구 신평동에 위치한 신항만 가스입니다.</p>
         </div>
     </section>
 
     <section class="content-section">
-        <div class="container">
-            <div class="location-content">
-                <div class="location-info">
-                    <h2>📍 위치 정보</h2>
-                    <div class="info-item">
-                        <h3>주소</h3>
-                        <p>부산 사하구 을숙도대로677번길 11</p>
-                        <p>(부산 사하구 신평동 568-4)</p>
-                    </div>
-                    <div class="info-item">
-                        <h3>전화</h3>
-                        <p><a href="tel:010-5513-3481">010-5513-3481</a></p>
-                    </div>
-                    <div class="info-item">
-                        <h3>영업시간</h3>
-                        <p>평일: 07:30 - 17:30</p>
-                        <p>토요일: 07:30 - 13:00</p>
-                        <p>일요일 및 공휴일: 휴무</p>
-                    </div>
-                </div>
+        <div class="container location-content">
+            <div class="location-info detail-grid">
+                <article class="info-item"><p class="section-kicker">ADDRESS</p><h3>주소</h3><p>부산 사하구 을숙도대로677번길 11</p><p>부산 사하구 신평동 568-4</p></article>
+                <article class="info-item"><p class="section-kicker">CALL</p><h3>전화</h3><p><a href="tel:010-5513-3481">010-5513-3481</a></p></article>
+                <article class="info-item"><p class="section-kicker">HOURS</p><h3>영업시간</h3><p>평일 07:30 - 17:30</p><p>토요일 07:30 - 13:00</p><p>일요일 및 공휴일 휴무</p></article>
+            </div>
 
-                <div class="map-container">
-                    <h2>지도</h2>
-                    <div class="naver-map-wrapper desktop-map" id="desktop-map">
-                        <iframe
-                            src="https://map.naver.com/p/entry/place/1926158846?c=15,0,0,0,dh"
-                            allowfullscreen
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
+            <div class="map-container">
+                <div class="split-heading compact">
+                    <div>
+                        <p class="section-kicker">/ MAP</p>
+                        <h2>지도</h2>
                     </div>
-                    <div class="mobile-map" id="mobile-map">
-                        <a href="https://map.naver.com/p/entry/place/1926158846" target="_blank" class="map-link">
-                            <div class="map-placeholder">
-                                <div class="map-placeholder-content">
-                                    <span class="map-icon">📍</span>
-                                    <h3>신항만 가스</h3>
-                                    <p>부산 사하구 을숙도대로677번길 11</p>
-                                    <p>(부산 사하구 신평동 568-4)</p>
-                                    <span class="map-button">네이버 지도에서 보기</span>
-                                </div>
+                    <a href="https://map.naver.com/p/entry/place/1926158846" target="_blank" class="btn-secondary">네이버 지도</a>
+                </div>
+                <div class="naver-map-wrapper desktop-map" id="desktop-map">
+                    <iframe src="https://map.naver.com/p/entry/place/1926158846?c=15,0,0,0,dh" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="mobile-map" id="mobile-map">
+                    <a href="https://map.naver.com/p/entry/place/1926158846" target="_blank" class="map-link">
+                        <div class="map-placeholder">
+                            <div class="map-placeholder-content">
+                                <h3>신항만 가스</h3>
+                                <p>부산 사하구 을숙도대로677번길 11</p>
+                                <p>부산 사하구 신평동 568-4</p>
+                                <span class="map-button">네이버 지도에서 보기</span>
                             </div>
-                        </a>
-                    </div>
-                    <div class="map-link-button">
-                        <a href="https://map.naver.com/p/entry/place/1926158846" target="_blank" class="btn-primary">길찾기 시작하기</a>
-                    </div>
+                        </div>
+                    </a>
                 </div>
+            </div>
 
-                <div class="directions">
-                    <h2>🚗 찾아오시는 길</h2>
-                    <div class="direction-item">
-                        <h3>자가용 이용 시</h3>
-                        <p>신평IC에서 약 5분 거리</p>
-                        <p>을숙도대로677번길 방향</p>
-                    </div>
-                    <div class="direction-item">
-                        <h3>대중교통 이용 시</h3>
-                        <p>부산 지하철 1호선 하단역 하차</p>
-                        <p>버스 이용 후 신평동 하차</p>
-                    </div>
-                </div>
+            <div class="directions detail-grid">
+                <article class="direction-item"><p class="section-kicker">CAR</p><h3>자가용 이용 시</h3><p>신평IC에서 약 5분 거리</p><p>을숙도대로677번길 방향</p></article>
+                <article class="direction-item"><p class="section-kicker">TRANSIT</p><h3>대중교통 이용 시</h3><p>부산 지하철 1호선 하단역 하차</p><p>버스 이용 후 신평동 하차</p></article>
             </div>
         </div>
     </section>
