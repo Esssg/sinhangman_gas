@@ -1,6 +1,13 @@
 HELP.md
 .gradle
 build/
+node_modules/
+.astro/
+dist/
+.playwright-mcp/
+*.png
+!public/**/*.png
+!src/**/*.png
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
@@ -29,7 +36,6 @@ out/
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
-/dist/
 /nbdist/
 /.nb-gradle/
 
@@ -39,3 +45,5 @@ out/
 ### Mac ###
 .DS_Store
 
+.playwright-mcp
+plans.md

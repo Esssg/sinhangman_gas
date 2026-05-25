@@ -1,0 +1,50 @@
+---
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+    title: string;
+    description?: string;
+    keywords?: string;
+    ogTitle?: string;
+    ogDescription?: string;
+    ogImage?: string;
+    ogUrl?: string;
+}
+
+const {
+    title,
+    description = '부산, 경남 지역 가스 공급 전문 업체 신항만 가스입니다.',
+    keywords,
+    ogTitle = title,
+    ogDescription = description,
+    ogImage,
+    ogUrl
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <meta name="description" content={description}>
+    {keywords && <meta name="keywords" content={keywords}>}
+    <meta property="og:type" content="website">
+    <meta property="og:title" content={ogTitle}>
+    <meta property="og:description" content={ogDescription}>
+    {ogImage && <meta property="og:image" content={ogImage}>}
+    {ogUrl && <meta property="og:url" content={ogUrl}>}
+    <meta property="og:locale" content="ko_KR">
+    <link rel="icon" type="image/png" href="/images/logo-simple.png">
+    <link rel="apple-touch-icon" href="/images/logo-simple.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <slot name="head" />
+</head>
+<body>
+    <Navigation />
+    <slot />
+    <Footer />
+    <script src="/js/main.js" is:inline></script>
+</body>
+</html>

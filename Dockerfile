@@ -1,48 +1,20 @@
-# Multi-stage build for Spring Boot application
-
-# Stage 1: Build
-FROM gradle:8.5-jdk17 AS build
+FROM node:22-alpine AS build
 WORKDIR /app
 
-# Copy gradle files
-COPY build.gradle settings.gradle gradlew ./
-COPY gradle ./gradle
+COPY package*.json ./
+RUN npm ci
 
-# Download dependencies
-RUN ./gradlew dependencies --no-daemon || true
-
-# Copy source code
+COPY astro.config.mjs ./
+COPY public ./public
 COPY src ./src
+RUN npm run build
 
-# Build application
-RUN ./gradlew build --no-daemon -x test
+FROM nginxinc/nginx-unprivileged:stable-alpine
 
-# Stage 2: Runtime
-FROM eclipse-temurin:17-jre-alpine
-WORKDIR /app
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist /usr/share/nginx/html
 
-# Install curl for health check
-RUN apk add --no-cache curl
-
-# Create non-root user
-RUN addgroup -S spring && adduser -S spring -G spring
-
-# Copy jar from build stage
-COPY --from=build /app/build/libs/*SNAPSHOT.jar app.jar
-
-# Change ownership
-RUN chown -R spring:spring /app
-
-# Switch to non-root user
-USER spring:spring
-
-# Expose port
 EXPOSE 8080
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
-  CMD curl -f http://localhost:8080/actuator/health || exit 1
-
-# Run application
-ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "app.jar"]
-
+HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
+  CMD wget -q -O /dev/null http://127.0.0.1:8080/ || exit 1

@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Naver
+User-agent: Yeti
+Allow: /
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://sinhangman-gas.onrender.com/sitemap.xml

@@ -1,50 +1,10 @@
-# Git
+node_modules
+dist
+.astro
 .git
 .gitignore
-.gitattributes
-
-# Build output
-build/
-target/
-out/
-*.class
-
-# Gradle
-.gradle/
-!gradle/wrapper/gradle-wrapper.jar
-
-# IDE
-.idea/
-.vscode/
-*.iml
-*.ipr
-*.iws
-.classpath
-.project
-.settings/
-
-# OS
 .DS_Store
-Thumbs.db
-
-# Logs
-*.log
-
-# Temporary files
-*.tmp
-*.temp
-*.swp
-*.swo
-*~
-
-# Documentation
-README.md
-*.md
-docs/
-
-# Docker
-Dockerfile
-.dockerignore
-docker-compose.yml
-
-
+build
+home-desktop.png
+location-mobile.png
+.playwright-mcp
